@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofxiOS.h"
+#include "Button.h"
 
 class ofApp : public ofxiOSApp {
 	
@@ -20,11 +21,13 @@ class ofApp : public ofxiOSApp {
         void gotFocus();
         void gotMemoryWarning();
         void deviceOrientationChanged(int newOrientation);
-    
-        vector<ofPoint> pos;
-        float r,time;
-        ofImage pic;
 
+    vector<ofPoint> pos;
+    float r,time;
+    ofImage pic;
+
+    Button btn;
+    bool IAP;
 };
 
 

@@ -1,5 +1,3 @@
-//  Created by Wenzy in 2016.
-
 #include "ofApp.h"
 
 //--------------------------------------------------------------
@@ -11,11 +9,14 @@ void ofApp::setup(){
     pic.resize(ofGetWidth(),ofGetHeight());
     //pic.resize(ofGetWidth(),ofGetWidth() * pic.getHeight()/(float)pic.getWidth());
     ofSetWindowShape(pic.getWidth(),pic.getHeight());
+    
+    btn.setup(ofGetWidth()/2,ofGetHeight() * 0.8,200,50);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     time += 0.02;
+    btn.update(mouseX,mouseY);
 }
 
 //--------------------------------------------------------------
@@ -30,6 +31,7 @@ void ofApp::draw(){
     
     
     //--- 设置2
+    ofFill();
     ofSetColor(120);
     pic.draw(0,0);
     
@@ -38,7 +40,19 @@ void ofApp::draw(){
         r = 2;
         ofDrawCircle(pos[i],r + r * sin(ofGetElapsedTimef() * 20 + i));
     }
+    btn.draw();
+    
+    if(btn.pressedOnOff){
+        IAP = true;
+    }
+    
+    if(IAP){
+        
+        //内购代码部分？？
+        
+    }
 }
+
 //--------------------------------------------------------------
 void ofApp::exit(){
 
@@ -46,17 +60,17 @@ void ofApp::exit(){
 
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
-
+    btn.mousePressed(touch.x, touch.y);
 }
 
 //--------------------------------------------------------------
 void ofApp::touchMoved(ofTouchEventArgs & touch){
-     pos.push_back(ofPoint(touch.x,touch.y));
+    pos.push_back(ofPoint(touch.x,touch.y));
 }
 
 //--------------------------------------------------------------
 void ofApp::touchUp(ofTouchEventArgs & touch){
-
+    btn.mouseReleased(touch.x, touch.y);
 }
 
 //--------------------------------------------------------------
